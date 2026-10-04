@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Notes</title>
+</head>
+<body>
+
+<h1>My Notes</h1>
+
+<a href="/dashboard">Dashboard</a>
+<a href="/profile">Profile</a>
+
+<hr>
+
+<h2>Create Note</h2>
+
+<form action="/notes" method="POST">
+
+    <label>Note Name:</label>
+    <input type="text" name="notename" required>
+
+    <br><br>
+
+    <label>Title:</label>
+    <input type="text" name="title" required>
+
+    <br><br>
+
+    <label>Content:</label>
+    <textarea name="content" rows="8" cols="40" required></textarea>
+
+    <br><br>
+
+    <button type="submit">Create Note</button>
+
+</form>
+
+<hr>
+
+<h2>Your Notes</h2>
+
+<% if (notes && notes.length > 0) { %>
+
+    <% notes.forEach(note => { %>
+
+        <div>
+            <h3><%= note.notename %></h3>
+            <h4><%= note.title %></h4>
+            <p><%= note.content %></p>
+
+            <a href="/notes/<%= note._id %>">View Note</a>
+        </div>
+
+        <hr>
+
+    <% }) %>
+
+<% } else { %>
+
+    <p>You don't have any notes yet.</p>
+
+<% } %>
+
+</body>
+</html>
